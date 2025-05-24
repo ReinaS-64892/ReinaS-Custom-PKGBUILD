@@ -1,0 +1,56 @@
+# Maintainer: YTJVDCM <50657624+YTJVDCM@users.noreply.github.com>
+_pkgname='vrc-get'
+pkgname=alcom-beta
+pkgver=1.1.0_beta.1
+pkgrel=1
+pkgdesc="A fast open-source alternative of VRChat Creator Companion (VCC)"
+arch=('x86_64')
+url='https://github.com/vrc-get/vrc-get'
+license=('MIT')
+depends=(cairo desktop-file-utils gdk-pixbuf2 gcc-libs glibc glib2 gtk3 hicolor-icon-theme libsoup3 openssl pango webkit2gtk-4.1)
+makedepends=(cargo cargo-about nodejs npm dotnet-sdk dotnet-runtime lld)
+optdepends=('unityhub: Used to open created projects and migrate projects from older versions of Unity.')
+options+=(!lto)
+source=("$pkgname-${pkgver//_/-}.tar.gz::${url}/archive/refs/tags/gui-v${pkgver//_/-}.tar.gz" "build.patch")
+sha256sums=('ee7aa148851174c0811e38dc767f5ff894e50a1e8bffe8ffde4e03eeabecb065' '1d0012dec7b5f7a8a91c21ecf4f5bf681ca43d67b7a03b80915d6c1aeb6e5c53')
+
+prepare() {
+    cd "$_pkgname-gui-v${pkgver//_/-}"
+
+    # Disable updater for deb build
+    patch "vrc-get-gui/Tauri.toml" "${srcdir}/build.patch"
+
+    cd "$_pkgname-gui"
+
+    export RASTUP_TOOLCHAIN=stable
+    cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
+}
+
+build() {
+    cd "$_pkgname-gui-v${pkgver//_/-}/$_pkgname-gui"
+    export RUSTUP_TOOLCHAIN=stable
+    export CARGO_TARGET_DIR=target
+
+    # npm run tauri build
+    npm run -- tauri build --config '{"bundle":{"targets":["deb"]}}'
+}
+
+check() {
+    cd "$_pkgname-gui-v${pkgver//_/-}/$_pkgname-gui"
+    export RUSTUP_TOOLCHAIN=stable
+    cargo test -p vrc-get-gui --frozen --all-features
+}
+
+package() {
+    cd "$_pkgname-gui-v${pkgver//_/-}/$_pkgname-gui"
+
+    # mv "target/release/bundle/deb/ALCOM_${pkgver}_amd64/data/usr/bin/ALCOM" "target/release/bundle/deb/ALCOM_${pkgver}_amd64/data/usr/bin/$pkgname"
+
+    install -Dm644 ../LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+
+    cp -ar "target/release/bundle/deb/ALCOM_${pkgver//_/-}_amd64/data/usr/share/icons" "$pkgdir/usr/share/"
+    
+    install -Dm644 -t "$pkgdir/usr/share/applications/" "target/release/bundle/deb/ALCOM_${pkgver//_/-}_amd64/data/usr/share/applications/ALCOM.desktop"
+
+    install -Dm0755 -t "$pkgdir/usr/bin/" "target/release/bundle/deb/ALCOM_${pkgver//_/-}_amd64/data/usr/bin/ALCOM"
+}
