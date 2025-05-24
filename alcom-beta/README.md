@@ -11,4 +11,6 @@ commit hash `f900a6f135fb8e9fd60c79880842cda08907ba6d`
 
 コンフリクトしてうざいから makedepends: nodejs-iron-lts -> nodejs
 
+nodejs はサポートしてないみたいな噂聞いたけど動くから ヨシ!
+
 pkgver の内容に `_` が入っている時に `-`  に置き換えて `vx.x.x_beta.x` といった指定で beta のバージョンを引っ張ってこれるようにした。
