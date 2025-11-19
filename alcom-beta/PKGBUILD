@@ -1,7 +1,7 @@
 # Contributor: YTJVDCM <50657624+YTJVDCM@users.noreply.github.com>
 _pkgname='vrc-get'
 pkgname=alcom-beta
-pkgver=1.1.4
+pkgver=1.1.5
 pkgrel=1
 pkgdesc="A fast open-source alternative of VRChat Creator Companion (VCC)"
 arch=('x86_64')
@@ -12,7 +12,7 @@ makedepends=(cargo cargo-about nodejs npm dotnet-sdk dotnet-runtime lld)
 optdepends=('unityhub: Used to open created projects and migrate projects from older versions of Unity.')
 options+=(!lto)
 source=("$pkgname-${pkgver//_/-}.tar.gz::${url}/archive/refs/tags/gui-v${pkgver//_/-}.tar.gz" "build.patch")
-sha256sums=('112d8d6e01b9902a92e0e750993ad702a886ac93c6ecda5adf9b59f68b1d2079' '1d0012dec7b5f7a8a91c21ecf4f5bf681ca43d67b7a03b80915d6c1aeb6e5c53')
+sha256sums=('c9f3c0f79e0aa425a2b4a86cb9f85f8890e93c23010c5e280b11df4343736b94' '1d0012dec7b5f7a8a91c21ecf4f5bf681ca43d67b7a03b80915d6c1aeb6e5c53')
 
 prepare() {
     cd "$_pkgname-gui-v${pkgver//_/-}"
