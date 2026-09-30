@@ -1,0 +1,13 @@
+pkgbase = dotnet-sdk-10.0.401-bin
+	pkgdesc = .NET SDK 10.0.401 for the system dotnet host
+	pkgver = 10.0.401
+	pkgrel = 1
+	url = https://dotnet.microsoft.com/
+	arch = x86_64
+	license = MIT
+	depends = dotnet-host
+	depends = dotnet-runtime
+	source = https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz
+	sha256sums = 137268c8ad939c064ff1ee2a6fdf0899d8725377114ea012fbd1ad5fa2550418
+
+pkgname = dotnet-sdk-10.0.401-bin

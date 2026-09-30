@@ -1,0 +1,27 @@
+pkgname=dotnet-sdk-10.0.401-bin
+pkgver=10.0.401
+pkgrel=1
+pkgdesc=".NET SDK 10.0.401 for the system dotnet host"
+arch=('x86_64')
+url='https://dotnet.microsoft.com/'
+license=('MIT')
+
+depends=('dotnet-host' 'dotnet-runtime')
+
+source=(
+  "https://builds.dotnet.microsoft.com/dotnet/Sdk/${pkgver}/dotnet-sdk-${pkgver}-linux-x64.tar.gz"
+)
+
+sha256sums=('137268c8ad939c064ff1ee2a6fdf0899d8725377114ea012fbd1ad5fa2550418')
+
+package() {
+    install -d "$pkgdir/usr/share/dotnet/sdk"
+
+    bsdtar -xf \
+        "$srcdir/dotnet-sdk-${pkgver}-linux-x64.tar.gz" \
+        -C "$srcdir"
+
+    cp -a \
+        "$srcdir/sdk/${pkgver}" \
+        "$pkgdir/usr/share/dotnet/sdk/"
+}
