@@ -1,7 +1,7 @@
 pkgbase = rtl8852cu-morrownr-dkms-git
 	pkgdesc = Realtek RTL8832CU/RTL8852CU USB Wi-Fi driver (morrownr, DKMS, git)
 	pkgver = 1.19.22.103.r50.gfcb70aa
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/morrownr/rtl8852cu-20251113
 	arch = x86_64
 	license = GPL-2.0-only
@@ -15,6 +15,8 @@ pkgbase = rtl8852cu-morrownr-dkms-git
 	conflicts = rtl8852cu-dkms
 	conflicts = 8852cu-dkms-git
 	source = git+https://github.com/morrownr/rtl8852cu-20251113.git
+	source = valve-28de-2432.patch
 	sha256sums = SKIP
+	sha256sums = 48f98860114fed43256e0e5e2019c6f4dcb3a59bb933593cf470aa4abc92dd28
 
 pkgname = rtl8852cu-morrownr-dkms-git

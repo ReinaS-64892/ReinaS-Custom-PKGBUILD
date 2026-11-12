@@ -1,0 +1,24 @@
+diff --git a/os_dep/linux/usb_intf.c b/os_dep/linux/usb_intf.c
+index 580a4b7..359dd86 100644
+--- a/os_dep/linux/usb_intf.c
++++ b/os_dep/linux/usb_intf.c
+@@ -182,6 +182,7 @@ static struct usb_device_id rtw_usb_id_tbl[] = {
+ 	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_REALTEK, 0xC85D, 0xff, 0xff, 0xff), .driver_info = RTL8852C},
+ 	{USB_DEVICE_AND_INTERFACE_INFO(0x0db0, 0x991d, 0xff, 0xff, 0xff), .driver_info = RTL8852C}, /* MSI AXE5400 */
+ 	{USB_DEVICE_AND_INTERFACE_INFO(0x2c4e, 0x0127, 0xff, 0xff, 0xff), .driver_info = RTL8852C}, /* Mercusys MA86XH */
++	{USB_DEVICE_AND_INTERFACE_INFO(0x28de, 0x2432, 0xff, 0xff, 0xff), .driver_info = RTL8852C}, /* Valve Software */
+ 	{USB_DEVICE_AND_INTERFACE_INFO(0x3574, 0x6251, 0xff, 0xff, 0xff), .driver_info = RTL8852C}, /* Sihai Lianzong */
+ 	{USB_DEVICE_AND_INTERFACE_INFO(0x35b2, 0x0502, 0xff, 0xff, 0xff), .driver_info = RTL8852C}, /* TP-Link Archer TXE70UH */
+ 	{USB_DEVICE_AND_INTERFACE_INFO(0x35bc, 0x0101, 0xff, 0xff, 0xff), .driver_info = RTL8852C}, /* TP-Link Archer TX50UH V1 */
+diff --git a/supported-device-IDs b/supported-device-IDs
+index a794766..aa2e60f 100644
+--- a/supported-device-IDs
++++ b/supported-device-IDs
+@@ -22,6 +22,7 @@ ID 0bda:c85d - Default ID
+ Seller specific IDs
+ 
+ ID 0db0:991d - MSI AXE5400
++ID 28de:2432 - Valve Software
+ ID 3574:6251 - Sihai Lianzong
+ ID 35b2:0502 - TP-Link TP-Link Archer TXE70UH
+ ID 35bc:0101 - TP-Link Archer TX50UH V1

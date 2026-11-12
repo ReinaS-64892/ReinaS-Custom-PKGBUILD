@@ -5,7 +5,7 @@
 _pkgbase=rtl8852cu
 pkgname=rtl8852cu-morrownr-dkms-git
 pkgver=1.19.22.103.r50.gfcb70aa
-pkgrel=1
+pkgrel=2
 pkgdesc='Realtek RTL8832CU/RTL8852CU USB Wi-Fi driver (morrownr, DKMS, git)'
 arch=('x86_64')
 url='https://github.com/morrownr/rtl8852cu-20251113'
@@ -15,14 +15,21 @@ makedepends=('git')
 optdepends=('linux-headers: DKMS build for the stock linux kernel'
             'linux-lts-headers: DKMS build for linux-lts')
 conflicts=('rtl8852cu-dkms-git' 'rtl8852cu-dkms' '8852cu-dkms-git')
-source=('git+https://github.com/morrownr/rtl8852cu-20251113.git')
-sha256sums=('SKIP')
+source=('git+https://github.com/morrownr/rtl8852cu-20251113.git'
+        'valve-28de-2432.patch')
+sha256sums=('SKIP'
+            '48f98860114fed43256e0e5e2019c6f4dcb3a59bb933593cf470aa4abc92dd28')
 
 pkgver() {
   cd "${srcdir}/rtl8852cu-20251113"
   printf '1.19.22.103.r%s.g%s' \
     "$(git rev-list --count HEAD)" \
     "$(git rev-parse --short=7 HEAD)"
+}
+
+prepare() {
+  cd "${srcdir}/rtl8852cu-20251113"
+  patch -Np1 -i "${srcdir}/valve-28de-2432.patch"
 }
 
 package() {
