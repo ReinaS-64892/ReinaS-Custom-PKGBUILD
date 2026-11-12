@@ -1,0 +1,20 @@
+pkgbase = rtl8852cu-morrownr-dkms-git
+	pkgdesc = Realtek RTL8832CU/RTL8852CU USB Wi-Fi driver (morrownr, DKMS, git)
+	pkgver = 1.19.22.103.r50.gfcb70aa
+	pkgrel = 1
+	url = https://github.com/morrownr/rtl8852cu-20251113
+	arch = x86_64
+	license = GPL-2.0-only
+	makedepends = git
+	depends = dkms
+	depends = bc
+	depends = procps-ng
+	optdepends = linux-headers: DKMS build for the stock linux kernel
+	optdepends = linux-lts-headers: DKMS build for linux-lts
+	conflicts = rtl8852cu-dkms-git
+	conflicts = rtl8852cu-dkms
+	conflicts = 8852cu-dkms-git
+	source = git+https://github.com/morrownr/rtl8852cu-20251113.git
+	sha256sums = SKIP
+
+pkgname = rtl8852cu-morrownr-dkms-git
